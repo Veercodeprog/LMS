@@ -1,10 +1,12 @@
+pub mod components;
+pub mod pages;
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Stylesheet, Title};
 use leptos_router::{
     components::{Route, Router, Routes},
     StaticSegment, WildcardSegment,
 };
-
+use pages::{Articles, Categories};
 #[component]
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
@@ -13,17 +15,32 @@ pub fn App() -> impl IntoView {
     view! {
         // injects a stylesheet into the document <head>
         // id=leptos means cargo-leptos will hot-reload this stylesheet
-        <Stylesheet id="leptos" href="/pkg/lms-final.css"/>
+        <Stylesheet id="leptos" href="/pkg/lms-final.css" />
+        <link data-trunk rel="tailwind-css" href="/style/input.css" />
 
         // sets the document title
-        <Title text="Welcome to Leptos"/>
+        <Title text="Welcome to Leptos" />
 
         // content for this welcome page
         <Router>
-            <main>
+            <main class="overflow-y-hidden max-w-screen">
                 <Routes fallback=move || "Not found.">
-                    <Route path=StaticSegment("") view=HomePage/>
-                    <Route path=WildcardSegment("any") view=NotFound/>
+                    <Route path=StaticSegment("") view=HomePage />
+                    <Route
+                        path=StaticSegment("/categories")
+                        view=move || {
+                            view! { <Categories /> }
+                        }
+                    />
+
+                    <Route
+                        path=StaticSegment("/articles")
+                        view=move || {
+                            view! { <Articles /> }
+                        }
+                    />
+
+                    <Route path=WildcardSegment("any") view=NotFound />
                 </Routes>
             </main>
         </Router>
@@ -39,7 +56,10 @@ fn HomePage() -> impl IntoView {
 
     view! {
         <h1>"Welcome to Leptos!"</h1>
-        <button on:click=on_click>"Click Me: " {count}</button>
+        <button class="bg-red-500" on:click=on_click>
+            "Click Me: "
+            {count}
+        </button>
     }
 }
 
@@ -60,7 +80,5 @@ fn NotFound() -> impl IntoView {
         resp.set_status(actix_web::http::StatusCode::NOT_FOUND);
     }
 
-    view! {
-        <h1>"Not Found"</h1>
-    }
+    view! { <h1>"Not Found"</h1> }
 }

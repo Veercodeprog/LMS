@@ -1,0 +1,116 @@
+use leptos::prelude::*;
+use leptos::*; // required for ElementChild trait
+use leptos_router::hooks::use_location;
+#[component]
+pub fn Header() -> impl IntoView {
+    let location = use_location();
+    let path = location.pathname;
+    view! {
+        <div class="container px-4 mx-auto lg:px-0">
+            <header class="flex items-center py-3 border-b border-grey-light">
+                <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                    Subscribe
+                </a>
+
+                <nav class="flex gap-6 items-center ml-auto text-grey-darker">
+                    <a href="/" class="mx-4 text-3xl no-underline hover:underline">
+                        Home
+                    </a>
+                    <a href="/categories" class="mx-4 text-3xl no-underline hover:underline">
+                        Categories
+                    </a>
+                    <a href="/articles" class="mx-4 text-3xl no-underline hover:underline">
+                        Articles
+                    </a>
+                </nav>
+
+                <div class="flex items-center ml-auto">
+                    <a href="#" class="no-underline text-grey-darker">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="mx-3 stroke-current"
+                        >
+                            <circle cx="10.5" cy="10.5" r="7.5"></circle>
+                            <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
+                        </svg>
+                    </a>
+                    <button class="p-2 font-sans text-sm bg-transparent rounded border hover:text-white text-grey-darker border-grey-darker hover:bg-grey-darker">
+                        Sign up
+                    </button>
+                </div>
+            </header>
+
+            <ul class="flex overflow-auto justify-between py-3 px-2 w-full list-reset scrolling-touch">
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        World
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        U.S.
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Technology
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Design
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Culture
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Business
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Politics
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Opinion
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Science
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Health
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Style
+                    </a>
+                </li>
+                <li class="mx-2 lg:mx-0">
+                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
+                        Travel
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    }
+}
