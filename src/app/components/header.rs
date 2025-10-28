@@ -1,3 +1,4 @@
+use crate::api::strapi_categories_data::fetch_all_categories;
 use leptos::prelude::*;
 use leptos::*; // required for ElementChild trait
 use leptos_router::hooks::use_location;
@@ -5,6 +6,8 @@ use leptos_router::hooks::use_location;
 pub fn Header() -> impl IntoView {
     let location = use_location();
     let path = location.pathname;
+    let categories = LocalResource::new(|| async { fetch_all_categories().await });
+
     view! {
         <div class="container px-4 mx-auto lg:px-0">
             <header class="flex items-center py-3 border-b border-grey-light">
@@ -48,69 +51,60 @@ pub fn Header() -> impl IntoView {
                 </div>
             </header>
 
-            <ul class="flex overflow-auto justify-between py-3 px-2 w-full list-reset scrolling-touch">
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        World
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        U.S.
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Technology
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Design
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Culture
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Business
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Politics
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Opinion
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Science
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Health
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Style
-                    </a>
-                </li>
-                <li class="mx-2 lg:mx-0">
-                    <a href="#" class="font-sans no-underline hover:underline text-grey-darker">
-                        Travel
-                    </a>
-                </li>
-            </ul>
-
+            <Suspense fallback=|| {
+                view! {
+                    <ul class="flex overflow-auto justify-between py-3 px-2 w-full list-reset scrolling-touch">
+                        <li class="mx-2 lg:mx-0">"Loading categories..."</li>
+                    </ul>
+                }
+            }>
+                {move || match categories.get() {
+                    Some(Ok(cats)) => {
+                        view! {
+                            <ul class="flex overflow-auto justify-between py-3 px-2 w-full list-reset scrolling-touch">
+                                {cats
+                                    .into_iter()
+                                    .map(|cat| {
+                                        let name = cat
+                                            .name
+                                            .clone()
+                                            .unwrap_or_else(|| "Untitled".to_string());
+                                        let slug = cat.slug.clone().unwrap_or_default();
+                                        let href = format!("/category/{}", slug);
+                                        view! {
+                                            <li class="mx-2 lg:mx-0">
+                                                <a
+                                                    href=href
+                                                    class="font-sans no-underline hover:underline text-grey-darker"
+                                                >
+                                                    {name}
+                                                </a>
+                                            </li>
+                                        }
+                                    })
+                                    .collect_view()}
+                            </ul>
+                        }
+                            .into_any()
+                    }
+                    Some(Err(e)) => {
+                        view! {
+                            <ul class="flex overflow-auto justify-between py-3 px-2 w-full list-reset scrolling-touch">
+                                <li class="mx-2 text-red-600 lg:mx-0">{format!("Error: {}", e)}</li>
+                            </ul>
+                        }
+                            .into_any()
+                    }
+                    None => {
+                        view! {
+                            <ul class="flex overflow-auto justify-between py-3 px-2 w-full list-reset scrolling-touch">
+                                <li class="mx-2 lg:mx-0">"…"</li>
+                            </ul>
+                        }
+                            .into_any()
+                    }
+                }}
+            </Suspense>
         </div>
     }
 }
