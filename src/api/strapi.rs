@@ -33,6 +33,12 @@ where
     let mut req = Request::get(url).header("Accept", "application/json");
     dotenv().ok();
 
+    for (key, value) in env::vars() {
+        console_log(&format!("{}: {}", key, value));
+    }
+
+    dotenv().ok();
+
     // for (key, value) in env::vars() {
     //     println!("{}: {}", key, value);
     // }
