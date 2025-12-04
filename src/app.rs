@@ -1,12 +1,14 @@
 pub mod components;
+use crate::app::components::Header;
+
 pub mod pages;
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Stylesheet, Title};
 use leptos_router::{
-    components::{Route, Router, Routes},
-    StaticSegment, WildcardSegment,
+    components::{ParentRoute, Route, Router, Routes},
+    path, StaticSegment, WildcardSegment,
 };
-use pages::{Articles, Categories};
+use pages::{Articles, ArticlesPost, Categories, CategoriesPost};
 #[component]
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
@@ -39,7 +41,19 @@ pub fn App() -> impl IntoView {
                             view! { <Articles /> }
                         }
                     />
+                    // <Route path=StaticSegment("/categories") view=Categories />
+                    // <Route path=StaticSegment("/category/:id") view=CategoriesPost />
+                    // <ParentRoute path=StaticSegment("/categories") view=CategoryLayout>
+                    // <Route path=StaticSegment("/categories/:slug") view=CategoryView />
+                    // </ParentRoute>
+                    // <ParentRoute path=path!("/category") view=Categories>
+                    // </ParentRoute>
+                    <Route path=path!("/category/:slug") view=CategoriesPost />
 
+                    // <ParentRoute path=path!("/article") view={}>
+                    <Route path=path!("/article/:slug") view=ArticlesPost />
+
+                    // </ParentRoute>
                     <Route path=WildcardSegment("any") view=NotFound />
                 </Routes>
             </main>
@@ -55,6 +69,7 @@ fn HomePage() -> impl IntoView {
     let on_click = move |_| *count.write() += 1;
 
     view! {
+        <Header />
         <h1>"Welcome to Leptos!"</h1>
         <button class="bg-red-500" on:click=on_click>
             "Click Me: "

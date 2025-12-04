@@ -1,0 +1,4 @@
+[env]
+MY_ENV="dev"
+MY_DEV_HOST="localhost"
+MY_PROD_HOST="prod.example.com"

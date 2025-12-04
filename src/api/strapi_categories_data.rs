@@ -14,7 +14,7 @@ pub struct Category {
     pub publishedAt: Option<String>,
 }
 
-const STRAPI_BASE: &str = "https://bold-reward-a5d659b526.strapiapp.com";
+const STRAPI_BASE: &str = "http://localhost:1337";
 const STRAPI_TOKEN: Option<&str> = Some("YOUR_API_TOKEN_HERE"); // or None for public
 
 /// Fetch a single page of categories
