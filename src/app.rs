@@ -13,13 +13,13 @@ use pages::{Articles, ArticlesPost, Categories, CategoriesPost};
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
+    dotenv::dotenv().ok();
 
     view! {
         // injects a stylesheet into the document <head>
         // id=leptos means cargo-leptos will hot-reload this stylesheet
         <Stylesheet id="leptos" href="/pkg/lms-final.css" />
         <link data-trunk rel="tailwind-css" href="/style/input.css" />
-
         // sets the document title
         <Title text="Welcome to Leptos" />
 

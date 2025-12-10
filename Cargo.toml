@@ -25,9 +25,10 @@ num-format = "0.4.4"
 thiserror = "2.0.17"
 gloo-net = "0.6.0"
 env = "1.0.1"
-dotenv = "0.15.0"
+dotenv = { version = "0.15.0" }
 pulldown-cmark = "0.13.0"
 serde_json = "1.0.145"
+dotenvy = "0.15.7"
 
 [features]
 csr = ["leptos/csr"]

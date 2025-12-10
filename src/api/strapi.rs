@@ -3,7 +3,7 @@
 use gloo_net::http::Request;
 use leptos::leptos_dom::logging::console_log;
 use serde::{Deserialize, Serialize};
-// use std::env;
+use std::env;
 #[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct Pagination {
     pub page: u32,
@@ -31,10 +31,8 @@ where
     let mut req = Request::get(url).header("Accept", "application/json");
 
     let STRAPI_TOKEN="c4572b98bac66bfea088dbf3666802ba0ce1f2558a49768d9b20f11f3f3b847f39bdfaf2ac0ef250476916722e1050b1d1a2b92049b85a2a00aca5c16a4291aef059e6ed826211e93b4641a8eba43fa96adbee818bcb1e60ed0b3cc50f4f540450a85255fbbcb4a2400b9ed12998547ea1038d6e07b4a7770d87da9c0003d7d9";
-    // use dotenv::dotenv;
-    // use std::env;
-    //
-    // dotenv().ok();
+    // use dotenvy::dotenv;
+
     // let STRAPI_TOKEN = env::var("STRAPI_TOKEN").expect("STRAPI_TOKEN must be set");
 
     // let STRAPI_TOKEN = env::var("STRAPI_TOKEN");

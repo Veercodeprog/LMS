@@ -85,16 +85,16 @@ pub fn Categories() -> impl IntoView {
                                                         href=href
                                                         class="block overflow-hidden rounded-xl shadow-lg transition-all hover:shadow-2xl hover:-translate-y-2 group"
                                                     >
-                                                        <div class="relative h-40 bg-gradient-to-br {from_color} {to_color} flex items-center justify-center">
-                                                            <div class="text-6xl font-bold text-white opacity-90">
-                                                                {category_initial}
-                                                            </div>
-                                                            <div class="absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-10"></div>
-                                                        </div>
+                                                        // <div class="relative h-40 bg-gradient-to-br {from_color} {to_color} flex items-center justify-center">
+                                                        // <div class="text-6xl font-bold text-white opacity-90">
+                                                        // {category_initial}
+                                                        // </div>
+                                                        // <div class="absolute inset-0 bg-black opacity-0 transition-opacity group-hover:opacity-10"></div>
+                                                        // </div>
                                                         <div class="p-6 bg-white">
-                                                            <h2 class="mb-2 text-2xl font-bold text-gray-900 transition-colors group-hover:text-orange-800">
+                                                            <h3 class="mb-2 text-2xl font-bold text-gray-900 transition-colors group-hover:text-orange-800">
                                                                 {name}
-                                                            </h2>
+                                                            </h3>
                                                             <p class="mb-4 text-base text-gray-600 line-clamp-3">
                                                                 {description}
                                                             </p>
