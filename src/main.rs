@@ -3,12 +3,13 @@
 async fn main() -> std::io::Result<()> {
     use actix_files::Files;
     use actix_web::*;
+    use dotenv::dotenv;
     use leptos::config::get_configuration;
     use leptos::prelude::*;
     use leptos_actix::{generate_route_list, LeptosRoutes};
     use leptos_meta::MetaTags;
     use lms_final::app::*;
-
+    dotenv::dotenv().ok();
     let conf = get_configuration(None).unwrap();
     let addr = conf.leptos_options.site_addr;
 

@@ -13,7 +13,6 @@ use pages::{Articles, ArticlesPost, Categories, CategoriesPost};
 pub fn App() -> impl IntoView {
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
-    dotenv::dotenv().ok();
 
     view! {
         // injects a stylesheet into the document <head>
