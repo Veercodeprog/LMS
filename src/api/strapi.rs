@@ -30,9 +30,9 @@ where
 {
     let mut req = Request::get(url).header("Accept", "application/json");
 
-    /*   let STRAPI_TOKEN="c4572b98bac66bfea088dbf3666802ba0ce1f2558a49768d9b20f11f3f3b847f39bdfaf2ac0ef250476916722e1050b1d1a2b92049b85a2a00aca5c16a4291aef059e6ed826211e93b4641a8eba43fa96adbee818bcb1e60ed0b3cc50f4f540450a85255fbbcb4a2400b9ed12998547ea1038d6e07b4a7770d87da9c0003d7d9"; */
+    let STRAPI_TOKEN="6ae104fc02689d25c684a42ce53dd81e6bcdfa36cc0bdf6e720a745f18f1b03f5909f1b99b4a0cb907e4740fd8a15cf4c6d43e7a52d2483e7adeba0a2360fc0f32d29731aa227353360136a15e33cc6c88d87ee66acdb16b0a3ecb1414803237b24594f1b0c571ae61efe9b56a2bb075389103efe1b28428f1c53f75ce0a1820";
 
-    let STRAPI_TOKEN = env::var("STRAPI_TOKEN").expect("STRAPI_TOKEN must be set");
+    // let STRAPI_TOKEN = env::var("STRAPI_TOKEN").expect("STRAPI_TOKEN must be set");
 
     // let STRAPI_TOKEN = env::var("STRAPI_TOKEN");
     console_log(&format!("token: {}", STRAPI_TOKEN));

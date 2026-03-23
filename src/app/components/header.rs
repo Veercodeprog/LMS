@@ -9,6 +9,7 @@ pub fn Header() -> impl IntoView {
     let location = use_location();
     let path = location.pathname;
     let categories = LocalResource::new(|| async { fetch_all_categories().await });
+    //
 
     view! {
         <div class="container px-4 mx-auto lg:px-0">
